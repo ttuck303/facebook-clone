@@ -1,0 +1,6 @@
+<h3>Friends</h3>
+<ul>
+  <% @friends.each do |f| %>
+    <li><span><%= f.email %> <%= link_to "Unfriend", '#' %> <%= link_to "Visit", user_path(f.id) %></li>
+  <% end %>
+</ul>

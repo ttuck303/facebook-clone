@@ -1,0 +1,21 @@
+<% if user_signed_in? %>
+  <h3> Pending Friend Requests </h3>
+    <h4>You Have <%= current_user.outbound_requests.count %> Outbound Request(s)<h4>
+      <ul>
+        <% current_user.outbound_requests.each do |r| %>
+          <li>
+            <%= User.find(r.friend_id).email %> ...awaiting reply from user. 
+          </li>
+        <% end %>
+      </ul>
+    <h4>You Have <%= current_user.inbound_requests.count %> Inbound Request(s)<h4>
+      <ul>
+        <% current_user.inbound_requests.each do |r| %>
+          <li>
+            <span><%= User.find(r.user_id).email %> <%= link_to "Accept", update_friendship_path(friendship: r) %> <%= link_to "Decline", '#' %>
+          </li>
+        <% end %>
+      </ul>
+<% else %>
+  <p> Not signed in, requests partial </p>
+<% end %>

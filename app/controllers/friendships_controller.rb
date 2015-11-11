@@ -1,0 +1,28 @@
+class FriendshipsController < ApplicationController
+
+  def create # send a friend request
+  end
+
+  def destroy # destroy a friendship or a request
+  end
+
+  def update # accept a friendship request  
+    @friendship = Friendship.find(params[:friendship])
+    @friendship.accepted = true
+    if @friendship.save
+      flash[:success] = "New friend added!"
+      redirect_to current_user
+    else
+      flash[:danger] = "Error adding friend."
+      render current_user
+    end
+  end
+
+  
+  private
+
+  def friendship_params
+    params.require(:friendship).permit(:id, :user_id, :friend_id)
+  end
+
+end
