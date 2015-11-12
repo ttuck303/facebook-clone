@@ -1,27 +1,12 @@
-== README
+== Facebook Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A quick and dirty facebook clone in rails, with the following features:
 
-Things you may want to cover:
+1. user management w/ Devise Gem
+2. request, confirm, deny friend requests
+3. view friends' pages, delete friendships
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+(more to come...)
 
 
 Please feel free to use a different markup language if you do not plan to run

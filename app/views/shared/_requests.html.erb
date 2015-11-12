@@ -12,7 +12,7 @@
       <ul>
         <% current_user.inbound_requests.each do |r| %>
           <li>
-            <span><%= User.find(r.user_id).email %> <%= link_to "Accept", update_friendship_path(friendship: r) %> <%= link_to "Decline", '#' %>
+            <span><%= link_to User.find(r.user_id).email, user_path(id: r.user_id) %> <%= link_to "Accept", update_friendship_path(friendship: r) %> <%= link_to "Decline", delete_friendship_path(friend: r.user_id), method: :delete %>
           </li>
         <% end %>
       </ul>

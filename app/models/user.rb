@@ -51,4 +51,9 @@ class User < ActiveRecord::Base
     def decline_friend_request
     end
 
+    def find_friendship(id_a, id_b = self.id) # given two users and without knowledge of the 'direction' of the relationship, find the friendship relation if one exists
+      return Friendship.where('user_id = ? AND friend_id = ?', id_a, id_b) unless Friendship.where('user_id = ? AND friend_id = ?', id_a, id_b).empty?
+      return Friendship.where('user_id = ? AND friend_id = ?', id_b, id_a) unless Friendship.where('user_id = ? AND friend_id = ?', id_b, id_a).empty?
+      return nil
+    end
 end

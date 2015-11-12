@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
-  get 'friendships/delete' => 'friendships#destroy', as: :delete_friendship
+  delete 'friendships/delete' => 'friendships#destroy', as: :delete_friendship
   get 'friendships/create' => 'friendships#create', as: :create_friendship
   get 'friendships/update' => 'friendships#update', as: :update_friendship
 

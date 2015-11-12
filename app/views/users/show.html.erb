@@ -6,5 +6,9 @@
   <br>
   <% if current_user == @user %>
     <%= render 'shared/requests' %>
+  <% else %>
+    <% if current_user.find_friendship(@user.id).nil? %>
+      <%= link_to "Add #{@user.email} as friend", create_friendship_path(friend: @user) %>
+    <% end %>
   <% end %>
 <% end %>

@@ -1,9 +1,18 @@
 class FriendshipsController < ApplicationController
 
   def create # send a friend request
+    @user = current_user
+    @friendship = @user.friendships.build
+    @friendship.friend = User.find(params[:friend])
+    @friendship.save
+    flash[:success] = "Friend request sent!"
+    redirect_to user_path(params[:friend])
   end
 
   def destroy # destroy a friendship or a request
+   @friendship = current_user.find_friendship(params[:friend])
+   @friendship.destroy(@friendship[0].id)
+   redirect_to current_user
   end
 
   def update # accept a friendship request  
