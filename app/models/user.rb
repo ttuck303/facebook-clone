@@ -59,6 +59,6 @@ class User < ActiveRecord::Base
     end
 
     def get_notifications
-      # assemble all notifications for the status bar
+      self.inbound_requests
     end
 end
