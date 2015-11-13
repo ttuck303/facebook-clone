@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @friends = @user.get_all_friends
     @requests = @user.get_all_friend_requests
+    @post = current_user.posts.build
   end
 
 

@@ -1,14 +1,20 @@
 <h1>User: <%= @user.email %></h1>
 <br>
 
-<% if user_signed_in? %>
-  <%= render 'shared/friends' unless current_user.get_all_friends.nil? %>
-  <br>
-  <% if current_user == @user %>
-    <%= render 'shared/requests' %>
-  <% else %>
-    <% if current_user.find_friendship(@user.id).nil? %>
-      <%= link_to "Add #{@user.email} as friend", create_friendship_path(friend: @user) %>
+<div class="row">
+  <aside class="col-md-4">
+    <% if user_signed_in? %>
+      <%= render 'shared/friends' unless current_user.get_all_friends.nil? %>
+      <br>
+      <% if current_user == @user %>
+        <%= render 'shared/requests' %>
+        <br>
+        <%= render 'shared/post_form' %>
+      <% else %>
+        <% if current_user.find_friendship(@user.id).nil? %>
+          <%= link_to "Add #{@user.email} as friend", create_friendship_path(friend: @user) %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </aside>
+</div>
