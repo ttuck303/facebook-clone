@@ -61,4 +61,14 @@ class User < ActiveRecord::Base
     def get_notifications
       self.inbound_requests
     end
+
+
+
+    def feed
+      friend_ids = []
+      self.get_all_friends.each {|f| friend_ids << f.id }
+      Post.where("user_id IN (#{friend_ids.join(', ')}) OR user_id = :user_id", user_id: id)
+    end
+
+
 end

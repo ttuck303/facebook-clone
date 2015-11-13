@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @friends = @user.get_all_friends
     @requests = @user.get_all_friend_requests
     @post = current_user.posts.build
+    @feed_items = current_user.feed
   end
 
 
