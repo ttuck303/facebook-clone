@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+
   root "static_pages#index"
 
   devise_for :users
 
-  resources :users, only: :show
+  resources :users, only: :show do
+    resources :posts
+  end
+
 
   delete 'friendships/delete' => 'friendships#destroy', as: :delete_friendship
   get 'friendships/create' => 'friendships#create', as: :create_friendship

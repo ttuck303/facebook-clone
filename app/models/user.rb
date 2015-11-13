@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
+  has_many :posts
   
 
     def get_all_friends # returns a list of friends (user objects)
@@ -55,5 +56,9 @@ class User < ActiveRecord::Base
       return Friendship.where('user_id = ? AND friend_id = ?', id_a, id_b) unless Friendship.where('user_id = ? AND friend_id = ?', id_a, id_b).empty?
       return Friendship.where('user_id = ? AND friend_id = ?', id_b, id_a) unless Friendship.where('user_id = ? AND friend_id = ?', id_b, id_a).empty?
       return nil
+    end
+
+    def get_notifications
+      # assemble all notifications for the status bar
     end
 end

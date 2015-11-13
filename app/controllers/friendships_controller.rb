@@ -1,5 +1,7 @@
 class FriendshipsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create # send a friend request
     @user = current_user
     @friendship = @user.friendships.build
