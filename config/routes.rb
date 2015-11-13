@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :posts do
+    resources :likes, shallow: true
+  end
 
   delete 'friendships/delete' => 'friendships#destroy', as: :delete_friendship
   get 'friendships/create' => 'friendships#create', as: :create_friendship
