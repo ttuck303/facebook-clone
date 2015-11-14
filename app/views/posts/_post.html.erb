@@ -3,4 +3,6 @@
   <%= post.body %>
   <%= post.user.email %>
   <%= post.created_at %>
+  Likes: <%= post.likes.count %>
+  <%= render 'likes/like_link', object: post %>
 </li>
