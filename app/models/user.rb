@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, through: :inverse_friendships, source: :user
   has_many :posts
   has_many :likes, as: :likeable
+  has_many :comments, as: :commentable
   
 
     def get_all_friends # returns a list of friends (user objects)
