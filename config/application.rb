@@ -24,6 +24,6 @@ module FacebookClone
     config.active_record.raise_in_transactional_callbacks = true
 
     # add custom validators path
-    config.autoload_paths += %W["#{config.root}/app/validators/"]
+    #config.autoload_paths += %W["#{config.root}/app/validators/"] # don't actually need this line in rails since everything in the app folder gets loaded
   end
 end
