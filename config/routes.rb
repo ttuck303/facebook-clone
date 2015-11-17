@@ -11,10 +11,6 @@ Rails.application.routes.draw do
 
   resources :likes, only: [:create, :destroy]
 
-  #resources :posts do 
-  #  resources :comments
-  #end
-
   delete 'friendships/delete' => 'friendships#destroy', as: :delete_friendship
   get 'friendships/create' => 'friendships#create', as: :create_friendship
   get 'friendships/update' => 'friendships#update', as: :update_friendship
@@ -23,6 +19,6 @@ Rails.application.routes.draw do
   get '/posts/:post_id/comments' => 'comments#index', as: :post_comments
   post '/posts/:post_id/comments' => 'comments#create'
 
-  resources :comments, only: :destroy
+  resources :comments, only: [:destroy, :edit, :update]
 
 end
