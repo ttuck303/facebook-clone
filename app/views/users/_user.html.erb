@@ -1,0 +1,18 @@
+<li>
+  <%= gravatar_for user, size: 50 %>
+  <%= link_to user.email, user %>
+
+  <% if current_user.friends?(user.id) %>
+    | <%= link_to "Unfriend", delete_friendship_path(friend: user), method: :delete %>
+  <% elsif current_user.pending_inbound_request?(user.id) %>
+    | <%= link_to "Accept Request", update_friendship_path(friendship: current_user.find_friendship(user.id)) %> | 
+    <%= link_to "Deny Request", delete_friendship_path(friend: user.id), method: :delete %>
+  <% elsif current_user.pending_outbound_request?(user.id) %>
+    | Pending request...
+  <% elsif current_user == user %>
+  <% else %>
+    | <%= link_to "Add Friends", create_friendship_path(friend: user) %>
+  <% end %>
+</li>
+
+

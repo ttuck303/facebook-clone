@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     @feed_items = current_user.feed
   end
 
+  def index
+    @users = User.all
+  end
 
   private
 

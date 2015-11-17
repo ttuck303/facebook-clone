@@ -27,10 +27,6 @@ class User < ActiveRecord::Base
       f_list
     end
 
-    def get_all_friends_and_friendships # returns an array [friend, frienship]
-
-    end
-
     def get_all_friend_requests # returns a list of friendship requets (friendship objects)
       requests = []
       self.outbound_requests.each {|r| requests << r } unless self.outbound_requests.empty?
@@ -39,19 +35,11 @@ class User < ActiveRecord::Base
     end
 
     def outbound_requests
-      outbound_requests = self.friendships.all.pending
+      self.friendships.all.pending
     end
 
     def inbound_requests
-      inbound_requests = self.inverse_friendships.all.pending 
-    end
-
-
-    def accept_friend_request
-      
-    end
-
-    def decline_friend_request
+      self.inverse_friendships.all.pending 
     end
 
     def find_friendship(id_a, id_b = self.id) # given two users and without knowledge of the 'direction' of the relationship, find the friendship relation if one exists
@@ -64,13 +52,22 @@ class User < ActiveRecord::Base
       self.inbound_requests
     end
 
-
-
     def feed
       friend_ids = []
       self.get_all_friends.each {|f| friend_ids << f.id }
       Post.where("user_id IN (#{friend_ids.join(', ')}) OR user_id = :user_id", user_id: id)
     end
 
+    def friends?(other_id)
+      return true if (!Friendship.where('user_id = ? AND friend_id = ? AND accepted = true', other_id, self.id).empty? || !Friendship.where('user_id = ? AND friend_id = ? AND accepted = true', self.id, other_id).empty?)
+      false
+    end
 
+    def pending_outbound_request?(other_id)
+      !outbound_requests.where('friend_id = ?', other_id).empty?
+    end
+
+    def pending_inbound_request?(other_id)
+      !inbound_requests.where('user_id = ?', other_id).empty?
+    end
 end

@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+<ul class='users'>
+  <% if @users.any? %> 
+    <% @users.each do |u| %>
+      <%= render 'users/user', user: u %>
+    <% end %>
+  <% end %>
+</ul>
+

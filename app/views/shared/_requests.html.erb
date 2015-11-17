@@ -1,19 +1,15 @@
 <% if user_signed_in? %>
   <h3> Pending Friend Requests </h3>
     <h4>You Have <%= current_user.outbound_requests.count %> Outbound Request(s)<h4>
-      <ul>
+      <ul class='users'>
         <% current_user.outbound_requests.each do |r| %>
-          <li>
-            <%= User.find(r.friend_id).email %> ...awaiting reply from user. 
-          </li>
+          <%= render 'users/user', user: User.find(r.friend_id) %>
         <% end %>
       </ul>
     <h4>You Have <%= current_user.inbound_requests.count %> Inbound Request(s)<h4>
       <ul>
         <% current_user.inbound_requests.each do |r| %>
-          <li>
-            <span><%= link_to User.find(r.user_id).email, user_path(id: r.user_id) %> <%= link_to "Accept", update_friendship_path(friendship: r) %> <%= link_to "Decline", delete_friendship_path(friend: r.user_id), method: :delete %>
-          </li>
+          <%= render 'users/user', user: User.find(r.user_id) %>
         <% end %>
       </ul>
 <% else %>

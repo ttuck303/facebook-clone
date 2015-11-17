@@ -1,15 +1,8 @@
-<h3>Friends</h3>
-<ul>
+<h3>Friends (<%= @friends ? @friends.count : 0 %>) </h3>
+<ul class='users'>
   <% unless @friends.nil? %>
     <% @friends.each do |f| %>
-      <li>
-        <span>
-          <%= link_to f.email, user_path(f) %>
-          <% if(current_user.id == params[:id].to_i) %>
-            <%= link_to "Unfriend", delete_friendship_path(friend: f), method: :delete %>
-          <% end %>
-        </span>
-      </li>
+      <%= render 'users/user', user: f %>
     <% end %>
   <% end %>
 </ul>
