@@ -5,4 +5,8 @@
   <%= post.created_at %>
   Likes: <%= post.likes.count %>
   <%= render 'likes/like_link', object: post %>
+  <div class="well">
+    <%= render 'comments/comments', object: post %>
+    <%= render partial: 'comments/form', locals: { commentable: post }  %>
+  </div>
 </li>

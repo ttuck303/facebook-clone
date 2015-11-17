@@ -9,5 +9,13 @@ Comments Partial (for displaying)
 
 since they're rendered on the same page, does it make sense to nest? 
 
+actually, should be able to use the same form, with one using get and one using post, I believe
+can't remember how to do that right now so I will get back to it
+
+
 
 pausing here to write some tests -->
+
+<% object.comments.all.each do |c| %>
+  <%= c.body %> - <%= c.user.email %> at <%= c.updated_at %> Likes: <%= c.likes.count %> <%= render 'likes/like_link', object: c %><br>
+<% end %>
