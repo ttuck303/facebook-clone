@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_commentable
+  before_action :set_commentable, only: :create
 
   def edit
   end
@@ -14,6 +14,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy 
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to :back
   end
   
   private

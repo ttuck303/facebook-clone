@@ -17,5 +17,8 @@ can't remember how to do that right now so I will get back to it
 pausing here to write some tests -->
 
 <% object.comments.all.each do |c| %>
-  <%= c.body %> - <%= c.user.email %> at <%= c.updated_at %> Likes: <%= c.likes.count %> <%= render 'likes/like_link', object: c %><br>
+  <%= c.body %> - <%= c.user.email %> at <%= c.updated_at %> Likes: <%= c.likes.count %> <%= render 'likes/like_link', object: c %> 
+  <% if current_user == c.user %>
+    <%= link_to "Delete", comment_path(c), method: :delete %> 
+  <% end %><br>
 <% end %>
