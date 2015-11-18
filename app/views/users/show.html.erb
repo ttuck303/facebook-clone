@@ -1,5 +1,10 @@
 <h1>User: <%= @user.email %></h1>
-<%= gravatar_for @user %>
+<% if @user.picture? %>
+  <%= image_tag @user.picture.url %>
+<% else %>
+  <%= gravatar_for @user %>
+<% end %>
+
 <br>
 
 <div class="row">

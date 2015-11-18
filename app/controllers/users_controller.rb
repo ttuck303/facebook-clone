@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def send_welcome
-    UserMailer.welcome_email(@user).deliver_now
+    
   end
 
 end
