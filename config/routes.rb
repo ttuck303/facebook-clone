@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   root "static_pages#index"
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-
- 
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions"  } 
 
   resources :users, only: :show do
     resources :posts

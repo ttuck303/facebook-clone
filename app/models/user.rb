@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :likes, as: :likeable
   has_many :comments, as: :commentable
+
+  #mount_uploader :picture, PictureUploader
   
 
     def get_all_friends # returns a list of friends (user objects)
