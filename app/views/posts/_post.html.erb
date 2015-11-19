@@ -1,5 +1,6 @@
 <li id="post-<%= post.id %>">
   <%= post.title %>
+  <%= image_tag post.picture.url if post.picture? %>
   <%= post.body %>
   <%= post.user.email %>
   <%= post.created_at %>

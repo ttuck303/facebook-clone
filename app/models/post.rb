@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
   has_many :likes, as: :likeable
   has_many :comments, as: :commentable
 
+  mount_uploader :picture, PictureUploader
+
+  validate :picture_size
 
   validates :user_id, presence: true
   validates :body, presence: true
@@ -20,4 +23,11 @@ class Post < ActiveRecord::Base
     self.comments.all
   end
 
+  private
+
+    def picture_size
+      if picture.size > 5.megabytes
+        errors.add(:picture, 'picture cannot exceed 5 MB')
+      end
+    end
 end
