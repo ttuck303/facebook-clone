@@ -26,13 +26,14 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
         format.html { redirect_to root_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { redirect_to root_path, notice: 'Post failed.' }
+        format.html { redirect_to root_path, notice: @post.errors }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
     @friendship.friend = User.find(params[:friend])
     @friendship.save
     flash[:success] = "Friend request sent!"
-    redirect_to user_path(params[:friend])
+    redirect_to :back
   end
 
   def destroy # destroy a friendship or a request

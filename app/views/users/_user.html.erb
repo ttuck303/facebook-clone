@@ -1,13 +1,15 @@
 <li>
-  <%= image_tag user.picture.url %>
-  <%= "Detects picture" if user.picture? %>
-  <%= gravatar_for user, size: 50 %> 
+  <% if user.picture? %>
+    <%= image_tag user.picture.url %>
+  <% else %>
+    <%= gravatar_for user, size: 50 %> 
+  <% end %>
   <%= link_to user.email, user %>
 
   <% if current_user.friends?(user.id) %>
     | <%= link_to "Unfriend", delete_friendship_path(friend: user), method: :delete %>
   <% elsif current_user.pending_inbound_request?(user.id) %>
-    | <%= link_to "Accept Request", update_friendship_path(friendship: current_user.find_friendship(user.id)) %> | 
+    | <%= link_to "Accept Request", update_friendship_path(friendship: current_user.find_friendship(user.id).first) %> | 
     <%= link_to "Deny Request", delete_friendship_path(friend: user.id), method: :delete %>
   <% elsif current_user.pending_outbound_request?(user.id) %>
     | Pending request...
