@@ -1,21 +1,21 @@
-<h1>User: <%= @user.email %></h1>
-<% if @user.picture? %>
-  <%= image_tag @user.picture.url %>
-<% else %>
-  <%= gravatar_for @user %>
-<% end %>
-
-<br>
-
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="left_column">
+    <div id="prof_pic">
+      <% if @user.picture? %>
+        <%= image_tag @user.picture.url %>
+      <% else %>
+        <%= gravatar_for @user %>
+      <% end %>
+      <p><%= @user.email %></p>
+    </div>
     <% if user_signed_in? %>
-      <%= render 'shared/friends' unless current_user.get_all_friends.nil? %>
-      <br>
+      <div id="friends_box">
+        <%= render 'shared/friends' unless current_user.get_all_friends.nil? %>
+      </div>
       <% if current_user == @user %>
-        <%= render 'shared/requests' %>
-        <br>
-        <%= render 'shared/post_form' %>
+        <div id="friend_request_box">
+          <%= render 'shared/requests' %>        
+        </div>
       <% else %>
         <% if current_user.find_friendship(@user.id).nil? %>
           <%= link_to "Add #{@user.email} as friend", create_friendship_path(friend: @user) %>
@@ -24,8 +24,13 @@
     <% end %>
   </aside>
   <% if current_user == @user %>
-    <div class="col-md-8">
-      <%= render 'shared/feed' %>
+    <div class="right_column">
+      <div>
+        <%= render 'shared/post_form' %>
+      </div>
+      <div class="feed">
+        <%= render 'shared/feed' %>
+      </div>
     </div>
   <% end %>  
 </div>
