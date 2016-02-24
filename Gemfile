@@ -43,7 +43,7 @@ gem 'letter_opener', group: :development
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-gem 'fog-aws'
+#gem 'fog-aws'
 gem 'seed_dump'
 gem 'rails_12factor'
 
