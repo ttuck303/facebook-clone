@@ -5,12 +5,6 @@ User.create!([
   {email: "marsh@yahoo.com", password: "foooobar", password_confirmation: "foooobar", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 2, current_sign_in_at: "2016-01-12 02:44:33", last_sign_in_at: "2016-01-12 02:42:30", current_sign_in_ip: "::1", last_sign_in_ip: "::1", provider: nil, uid: nil, picture: nil},
   {email: "archer@isis.com", password: "foooobar", password_confirmation: "foooobar", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 9, current_sign_in_at: "2016-02-22 21:42:25", last_sign_in_at: "2016-01-12 02:43:09", current_sign_in_ip: "::1", last_sign_in_ip: "::1", provider: nil, uid: nil, picture: "archer.jpg"}
 ])
-Comment.create!([
-  {user_id: 2, commentable_id: 4, commentable_type: "Post", body: "good god pam"},
-  {user_id: 1, commentable_id: 4, commentable_type: "Post", body: "seriously Pam! "},
-  {user_id: 2, commentable_id: 1, commentable_type: "Post", body: "wow.... just wow..."},
-  {user_id: 2, commentable_id: 1, commentable_type: "Post", body: "finally, a social network for cartoon characters!"}
-])
 Friendship.create!([
   {user_id: 2, friend_id: 1, accepted: true},
   {user_id: 3, friend_id: 1, accepted: true},
@@ -23,12 +17,6 @@ Friendship.create!([
   {user_id: 6, friend_id: 5, accepted: true},
   {user_id: 6, friend_id: 2, accepted: true}
 ])
-Like.create!([
-  {likeable_id: 1, likeable_type: "Post", user_id: 2},
-  {likeable_id: 2, likeable_type: "Post", user_id: 2},
-  {likeable_id: 1, likeable_type: "Comment", user_id: 1},
-  {likeable_id: 3, likeable_type: "Comment", user_id: 2}
-])
 Post.create!([
   {title: nil, body: "WHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT?!?!", user_id: 2, picture: nil},
   {title: nil, body: "heyheyheyheyheyheyhey", user_id: 2, picture: nil},
@@ -37,3 +25,16 @@ Post.create!([
   {title: nil, body: "does this thing have live ammo?", user_id: 1, picture: nil},
   {title: nil, body: "I think you're ready for an interview", user_id: 6, picture: nil}
 ])
+Comment.create!([
+  {user_id: 2, commentable_id: 4, commentable_type: "Post", body: "good god pam"},
+  {user_id: 1, commentable_id: 4, commentable_type: "Post", body: "seriously Pam! "},
+  {user_id: 2, commentable_id: 1, commentable_type: "Post", body: "wow.... just wow..."},
+  {user_id: 2, commentable_id: 1, commentable_type: "Post", body: "finally, a social network for cartoon characters!"}
+])
+Like.create!([
+  {likeable_id: 1, likeable_type: "Post", user_id: 2},
+  {likeable_id: 2, likeable_type: "Post", user_id: 2},
+  {likeable_id: 1, likeable_type: "Comment", user_id: 1},
+  {likeable_id: 3, likeable_type: "Comment", user_id: 2}
+])
+
